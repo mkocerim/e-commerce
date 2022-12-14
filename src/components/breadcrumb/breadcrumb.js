@@ -1,6 +1,8 @@
 
 
 function Breadcrumb(props) {
+  console.log('>>BREADCRUMBS',props)
+
 
 
   return (
@@ -10,10 +12,17 @@ function Breadcrumb(props) {
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div className="page-breadcrumb">
               <ol className="breadcrumb">
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>Blog Default</li>
+                {props.items.map((item, index)=>{
+                  return(
+                    <li key={index}>
+                    <a href={item.href}>
+                      {item.title}
+
+                    </a>
+                  </li>
+                  )
+                })}
+               
               </ol>
             </div>
           </div>

@@ -67,7 +67,187 @@ function SideBarSearch() {
             </li>
 
             <li className="has-sub">
-              <a href="#">Price</a>
+              <a href="#">PRICE</a>
+              <ul>
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">500-1000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">1000-2000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">2000-5000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">5000-10000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">10000-18000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">1800-20000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">20000-25000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">Above-25000</span>
+                  </label>
+                </li>
+              </ul>
+            </li>
+            <li className="has-sub">
+              <a href="#">SCREEN SIZE</a>
+              <ul>
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">500-1000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">1000-2000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">2000-5000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">5000-10000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">10000-18000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">1800-20000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">20000-25000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">Above-25000</span>
+                  </label>
+                </li>
+              </ul>
+            </li>
+            <li className="has-sub">
+              <a href="#">Processor Cores</a>
+              <ul>
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">500-1000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">1000-2000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">2000-5000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">5000-10000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">10000-18000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">1800-20000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">20000-25000</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" />
+                    <span className="checkbox-list">Above-25000</span>
+                  </label>
+                </li>
+              </ul>
+            </li>
+            <li className="has-sub">
+              <a href="#">Features</a>
               <ul>
                 <li>
                   <label>

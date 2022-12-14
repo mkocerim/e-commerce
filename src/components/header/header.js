@@ -25,7 +25,7 @@ function Header() {
           <div className="row">
             <div className="col-lg-3 col-md-3 col-sm-3 col-xs-8">
               <div className="logo">
-                <a href="index.html">
+                <a href="/">
                   <img src="images/logo.png" alt="" />
                 </a>
               </div>
@@ -78,10 +78,10 @@ function Header() {
                 <div id="navigation">
                   <ul>
                     <li className="active">
-                      <a href="index.html">Home</a>
+                      <a href="/">Home</a>
                     </li>
                     <li className="has-sub">
-                      <a href="#">Mobiles</a>
+                      <a href="/category/test">Mobiles</a>
                       <ul>
                         <li className="active">
                           <a href="product-list.html">Mobile List</a>
@@ -131,9 +131,7 @@ function Header() {
                     <li>
                       <a href="contact-us.html">Contact Us</a>
                     </li>
-                    <li>
-                      <a href="template-feature.html">Template Feature</a>
-                    </li>
+                   
                   </ul>
                 </div>
               </div>
