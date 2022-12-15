@@ -46,20 +46,20 @@ function Header() {
               <div className="account-section">
                 <ul>
                   <li>
-                    <a href="#" className="title hidden-xs">
-                      My Account
+                    <a href="/auth/login/" className="title hidden-xs">
+                      Login
                     </a>
                   </li>
                   <li>
-                    <a className="hidden-xs">l</a>
+                    <a className="hidden-xs">|</a>
                   </li>
                   <li>
-                    <a href="#" className="title hidden-xs">
+                    <a href="/auth/register" className="title hidden-xs">
                       Register
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="title">
+                    <a href="/cart" className="title">
                       <i className="fa fa-shopping-cart"></i>
                       <sup className="cart-quantity">1</sup>
                     </a>
@@ -101,16 +101,16 @@ function Header() {
                           <a href="checkout.html">Checkout Form</a>
                         </li>
                         <li>
-                          <a href="cart.html">Cart</a>
+                          <a href="cart">Cart</a>
                         </li>
                         <li>
-                          <a href="login-form.html">Login</a>
+                          <a href="/auth/login">Login</a>
                         </li>
                         <li>
-                          <a href="singup-form.html">Singup</a>
+                          <a href="/auth/register">Singup</a>
                         </li>
                         <li>
-                          <a href="404-page.html">404-page</a>
+                          <a href="/auth/404-page">404-page</a>
                         </li>
                         <li>
                           <a href="stylequide.html">styleguide</a>
