@@ -72,7 +72,7 @@ function Register(props) {
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                         <button className="btn btn-primary btn-block mb10">Register</button>
                         <div>
-                          <p>Have an Acount? <a href="#">Login</a></p>
+                          <p>Have an Acount? <a href="/auth/login">Login</a></p>
                         </div>
                       </div>
                     </form>
