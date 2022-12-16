@@ -1,4 +1,11 @@
+import { useDispatch, useSelector } from "react-redux";
+import { removeToken } from "../../redux/authSlice";
 function Header() {
+
+  const authState = useSelector(state=>state.authState)
+  const categoryState =useSelector(state=> state.categoryState)
+  const dispatch =useDispatch()
+
   return (
     <>
       <div className="top-header">
@@ -45,7 +52,35 @@ function Header() {
             <div className="col-lg-4 col-md-3 col-sm-3 col-xs-12">
               <div className="account-section">
                 <ul>
+                {
+                  authState.token 
+                  ? (
+                    <>
+                     <li>
+                    <a href="/user/dashboard" className="title hidden-xs">
+                      DashBoard
+                    </a>
+                  </li>
                   <li>
+                    <a className="hidden-xs">|</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={e=>dispatch(removeToken())} className="title hidden-xs">
+                      Logout
+                    </a>
+                  </li>
+                  <li>
+                    <a className="hidden-xs">|</a>
+                  </li>
+                
+                    
+                    </>
+
+
+                  )
+                  :(
+                    <>
+                    <li>
                     <a href="/auth/login/" className="title hidden-xs">
                       Login
                     </a>
@@ -58,6 +93,16 @@ function Header() {
                       Register
                     </a>
                   </li>
+                    
+                    </>
+
+                  )
+
+
+
+                }
+
+                 
                   <li>
                     <a href="/cart" className="title">
                       <i className="fa fa-shopping-cart"></i>
@@ -80,6 +125,47 @@ function Header() {
                     <li className="active">
                       <a href="/">Home</a>
                     </li>
+                    
+                    
+                    <li className="has-sub">
+                      <a href="/category/test">Category</a>
+                      <ul>
+                        {categoryState.categories?.map((item,index)=>{
+                          return(
+                            <li className="active" key={index}>
+                          <a href={"/category/" + item.code}>{item.name}</a>
+                        </li>
+                          )
+                        })}
+                      </ul>
+                    </li>
+
+                    {categoryState.categories===null
+                    ? (
+                      <li className="has-sub">
+                        <a href="/category/test">LOADING</a>
+                      </li>
+                    ):(
+                      <li className="has-sub">
+                        <a href="/category/test">Category</a>
+                        <ul>
+                          {categoryState.categories.map((item,index)=>{
+                            return <li key={index}>
+                              <a href= {'/category/' + item.code}>{item.name}</a>
+                            </li>
+                          })}
+                        </ul>
+                      </li>
+
+                    )
+                    
+                    
+                    
+                    }
+                    
+                 
+
+
                     <li className="has-sub">
                       <a href="/category/test">Mobiles</a>
                       <ul>

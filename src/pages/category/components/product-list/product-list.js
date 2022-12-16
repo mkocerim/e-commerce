@@ -2,14 +2,22 @@ import ProductItem from "../product-item/product-item";
 
 function ProductList(props) {
 
-    const ProductComponents=[]
-    for(let i=0; i<=5; i++){
-        ProductComponents.push(
-        <ProductItem key={i}/>
 
-        )
-        
-    }
+  console.log('PRODUCTS LIST PROPS',props.products)
+
+
+    const ProductComponents=[]
+
+    props.products.map((item,index)=>{
+
+      ProductComponents.push(
+        <ProductItem key={index} products={item}/>
+      )
+
+    })
+
+
+  
 
 
 
