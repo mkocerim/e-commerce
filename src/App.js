@@ -12,14 +12,30 @@ import useApi from "./hooks/useApi";
 import { setCategories } from "./redux/categorySlice";
 
 
+
 function App() {
 
   const  api= useApi()
   const dispatch=useDispatch()
 
   const categoryState = useSelector(state=>state.categoryState)
+  const authState = useSelector(state=> state.authState)
 
   console.log('>>APP CATEGORY STATE', categoryState)
+  console.log(">>APP AUTHSTATE STATE",authState)
+
+
+
+//TODO Fill Here
+  if(authState.token && authState.customerId && !authState.customerDetails){
+    api.get('shop/customers/' + authState.customerId)
+    .then((response)=>{
+      console.log('CUSTOMER DETAILS RESP',response)
+          
+    }).catch(err=>{
+      console.log('>>CUSTOMER DETAIL ERR',err)
+    })
+  }
 
   if(categoryState.categories=== null) {
     // TODO kategoriler yüklenmediği için kategorileri API'den al

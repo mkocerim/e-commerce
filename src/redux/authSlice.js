@@ -4,7 +4,9 @@ const initialState={
 
     //TODO token bilgisini localStorage dan al 
     //FIXME 
-    token:localStorage.getItem('token')
+    token:localStorage.getItem('token'),
+    customerId: localStorage.getItem('customerId'),
+    customerDetails:null,
 }
 
 export const authSlice = createSlice({
@@ -15,15 +17,27 @@ export const authSlice = createSlice({
         setToken:(state,action)=>{
         
             localStorage.setItem('token',action.payload.token)
+            localStorage.setItem('customerId',action.payload.customerId)
+
 
             state.token = action.payload.token
+            state.customerId=action.payload.customerId
         },
         removeToken:(state,action)=>{
 
             localStorage.removeItem('token')
-            state.token=null
+            localStorage.removeItem('customerId')
 
-        }
+            state.token=null
+            state.customerId=null
+            state.customerDetails=null
+
+        },
+         setCustomerDetails:(state,action)=>{
+            console.log(">>SET CUSTOMER DETAILS",action)
+            state.customerDetails=action.payload.customerDetails
+            //TODO Handle Here
+         }
     
     // TODO burayı birazdan olustur
 
@@ -33,7 +47,7 @@ export const authSlice = createSlice({
 
 export default authSlice.reducer
 
-export const{setToken,removeToken}= authSlice.actions
+export const{setToken,removeToken,setCustomerDetails}= authSlice.actions
 
 //export const {setToken} = authSlice.actions
 //export const removeToken= authSlice.actions.removeToken

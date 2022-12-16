@@ -1,17 +1,19 @@
 function ProductItem(props){
 
-    console.log('>>PRODUCT ITEM',props) 
+    console.log('>>PRODUCT ITEM',props)
+
+    
 
     return(
         <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
         <div className="product-block">
           <div className="product-img">
-            <img src="/images/product_img_3.png" alt="" />
+          <img src={'http://ecommerce-api.udemig.dev' + props.products.images[0].path } alt="" />
           </div>
           <div className="product-content">
             <h5>
               <a href="#" className="product-title">
-                Samsung Galaxy Note 8<strong>(128GB, Black)</strong>
+                {props.products.name}
               </a>
             </h5>
             <div className="product-meta">

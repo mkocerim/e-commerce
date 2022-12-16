@@ -32,9 +32,17 @@ function Login(props) {
     api.post("shop/authentication-token", postData)
       .then(response => {
         console.log(">>LOGIN RESPONSE", response);
+       
+        const customerId=response.data.customer.replace("/api/v2/shop/customers/",'')
+       
         dispatch(setToken({
-          token:response.data.token
+          token:response.data.token,
+          customerId
         }))
+
+       
+
+
         document.location.replace('/')
       })
       .catch(err => {
