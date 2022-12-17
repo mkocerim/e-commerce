@@ -22,11 +22,18 @@ export const authSlice = createSlice({
 
             state.token = action.payload.token
             state.customerId=action.payload.customerId
+
+            // TODO Find customer Details api and remove thäs line
+
+            state.customerDetails=action.payload.customerId
+
         },
         removeToken:(state,action)=>{
 
             localStorage.removeItem('token')
             localStorage.removeItem('customerId')
+            localStorage.removeItem('carTokenValue')
+
 
             state.token=null
             state.customerId=null

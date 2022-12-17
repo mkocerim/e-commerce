@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useApi from "./hooks/useApi";
 import { setCategories } from "./redux/categorySlice";
-
+import { setTokenValue } from "./redux/cartSlice";
 
 
 function App() {
@@ -20,22 +20,42 @@ function App() {
 
   const categoryState = useSelector(state=>state.categoryState)
   const authState = useSelector(state=> state.authState)
+  const cartState =useSelector(state=> state.cartState)
+
+
 
   console.log('>>APP CATEGORY STATE', categoryState)
   console.log(">>APP AUTHSTATE STATE",authState)
 
+  if(!cartState.tokenValue){ 
 
+    const postData={localeCode: 'en_US'}
 
-//TODO Fill Here
-  if(authState.token && authState.customerId && !authState.customerDetails){
-    api.get('shop/customers/' + authState.customerId)
+    api.post('shop/orders',postData)
     .then((response)=>{
-      console.log('CUSTOMER DETAILS RESP',response)
+      console.log('>>CART RESP',response)
+
+      dispatch(setTokenValue({
+        tokenValue: response.data.tokenValue,
+      }))
+
           
     }).catch(err=>{
-      console.log('>>CUSTOMER DETAIL ERR',err)
+      console.log('>>CART ERR',err)
     })
+
   }
+
+//TODO Fill Here
+  // if(authState.token && authState.customerId && !authState.customerDetails){
+  //   api.get('shop/customers/' + authState.customerId)
+  //   .then((response)=>{
+  //     console.log('CUSTOMER DETAILS RESP',response)
+          
+  //   }).catch(err=>{
+  //     console.log('>>CUSTOMER DETAIL ERR',err)
+  //   })
+  // }
 
   if(categoryState.categories=== null) {
     // TODO kategoriler yüklenmediği için kategorileri API'den al
@@ -57,9 +77,10 @@ function App() {
 
   return (
     <>
-      <Header />
 
       <BrowserRouter>
+      <Header />
+
         <Routes>
           <Route index element={<Home />} />
           <Route path="/category/:taxon_code" element={<Category />} />

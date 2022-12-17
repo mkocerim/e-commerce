@@ -1,3 +1,5 @@
+import CartTableItem from "./components/cart-table-item";
+
 function Cart(props) {
   return (
     <>
@@ -31,83 +33,14 @@ function Cart(props) {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              <a href="#">
-                                <img src="/images/cart_product_1.png" alt="" />
-                              </a>
-                              <span>
-                                <a href="#">Google Pixle</a>
-                              </span>
-                            </td>
-                            <td>$1100</td>
-                            <td>
-                              <div className="product-quantity">
-                                <div className="quantity">
-                                  <input
-                                    type="number"
-                                    className="input-text qty text"
-                                    step="1"
-                                    min="1"
-                                    max="6"
-                                    name="quantity"
-                                    value="1"
-                                    title="Qty"
-                                    size="4"
-                                    pattern="[0-9]*"
-                                  />
-                                </div>
-                              </div>
-                            </td>
-                            <td>$1100.00</td>
-                            <th scope="row">
-                              <a href="#" className="btn-close">
-                                <i className="fa fa-times-circle-o"></i>
-                              </a>
-                            </th>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="#">
-                                <img src="/images/cart_product_2.png" alt="" />
-                              </a>
-                              <span>
-                                <a href="#">Apple iPhone 6S </a>
-                              </span>
-                            </td>
-                            <td>$1300</td>
-                            <td>
-                              <div className="product-quantity">
-                                <div className="quantity">
-                                  <input
-                                    type="number"
-                                    className="input-text qty text "
-                                    step="1"
-                                    min="1"
-                                    max="6"
-                                    name="quantity"
-                                    value="1"
-                                    title="Qty"
-                                    size="4"
-                                    pattern="[0-9]*"
-                                  />
-                                </div>
-                              </div>
-                            </td>
-                            <td>$1300.00</td>
-                            <th scope="row">
-                              <a href="#" className="btn-close">
-                                <i className="fa fa-times-circle-o"></i>
-                              </a>
-                            </th>
-                          </tr>
+                         <CartTableItem/>                          
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-              <a href="#" className="btn-link">
+              <a href="/" className="btn-link">
                 <i className="fa fa-angle-left"></i> back to shopping
               </a>
             </div>
@@ -139,11 +72,11 @@ function Cart(props) {
                         <tbody>
                           <tr>
                             <th>
-                              <span className="mb0" style="font-weight: 700;">
+                              <span className="mb0" style={{fontWeight:'700'}}>
                                 Amount Payable
                               </span>
                             </th>
-                            <td style="font-weight: 700; color: #1c1e1e; ">
+                            <td style={{fontWeight: '700', color: '#1c1e1e'}}>
                               $2400
                             </td>
                           </tr>
@@ -156,31 +89,7 @@ function Cart(props) {
                   </div>
                 </div>
               </div>
-              <div className="box mb30">
-                <div className="box-head">
-                  <h3 className="head-title">Coupons &amp; Offers</h3>
-                </div>
-                <div className="box-body">
-                  <form>
-                    <div className="coupon-form">
-                      <input
-                        type="text"
-                        name="coupon_code"
-                        className="form-control"
-                        id="coupon_code"
-                        value=""
-                        placeholder="Coupon code"
-                      />
-                      <input
-                        type="submit"
-                        className="btn btn-primary btn-block"
-                        name="apply_coupon"
-                        value="Apply coupon"
-                      />
-                    </div>
-                  </form>
-                </div>
-              </div>
+           
             </div>
           </div>
         </div>
