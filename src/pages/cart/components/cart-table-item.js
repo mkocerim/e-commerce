@@ -1,10 +1,12 @@
+
+
 function CartTableItem(props) {
 
-    console.log("CART TABLE ITEM PROPS",props)
+  console.log("CART TABLE ITEM PROPS", props);
 
-    const onQuantityChange=(event)=>{
-        console.log('>> ON QUANTITY CHANGE',event.target.value)
-    }
+  const onQuantityChange = (event) => {
+    console.log(">> ON QUANTITY CHANGE", event.target.value);
+  };
 
   return (
     <tr>
@@ -13,7 +15,7 @@ function CartTableItem(props) {
           <img src="/images/cart_product_1.png" alt="" />
         </a>
         <span>
-          <a href="#">Google Pixle</a>
+          <a href="#">{props.name}</a>
         </span>
       </td>
       <td>$1100</td>
@@ -27,7 +29,7 @@ function CartTableItem(props) {
               min="1"
               max="10"
               name="quantity"
-              defaultValue="1"
+              defaultValue={props.quantity}
               title="Qty"
               size="4"
               pattern="[0-9]*"

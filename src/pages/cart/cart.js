@@ -1,6 +1,28 @@
+import { useSelector } from "react-redux";
 import CartTableItem from "./components/cart-table-item";
 
 function Cart(props) {
+  const cartState = useSelector((state) => state.cartState);
+
+  console.log('CART PROPS',props)
+
+  const cartTableItems = [];
+
+  cartState.items.map((item, index) => {
+    cartTableItems.push(
+      <CartTableItem
+        key={index}
+        id={item.id}
+        name={item.productName}
+        quantity={item.quantity}
+
+        //2. yöntem {...item}
+        // 3. yöntem  item= {item}
+      />
+    );
+  });
+  console.log("CART TABLE ITEM PUSH",cartTableItems)
+
   return (
     <>
       <div className="space-medium">
@@ -33,7 +55,8 @@ function Cart(props) {
                           </tr>
                         </thead>
                         <tbody>
-                         <CartTableItem/>                          
+                          {cartTableItems}
+                          
                         </tbody>
                       </table>
                     </div>
@@ -72,11 +95,14 @@ function Cart(props) {
                         <tbody>
                           <tr>
                             <th>
-                              <span className="mb0" style={{fontWeight:'700'}}>
+                              <span
+                                className="mb0"
+                                style={{ fontWeight: "700" }}
+                              >
                                 Amount Payable
                               </span>
                             </th>
-                            <td style={{fontWeight: '700', color: '#1c1e1e'}}>
+                            <td style={{ fontWeight: "700", color: "#1c1e1e" }}>
                               $2400
                             </td>
                           </tr>
@@ -89,7 +115,6 @@ function Cart(props) {
                   </div>
                 </div>
               </div>
-           
             </div>
           </div>
         </div>

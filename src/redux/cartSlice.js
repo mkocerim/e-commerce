@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tokenValue: localStorage.getItem("cartTokenValue"),
-  item: [],
+  items: [],
   id: null,
+  name:"",
 };
 
 export const cartSlice = createSlice({
@@ -17,9 +18,15 @@ export const cartSlice = createSlice({
 
       state.tokenValue = action.payload.tokenValue;
     },
+    updateFullCart:(state,action)=>{
+
+      console.log(">> SET FULL DATA ACTION", action);
+
+      return action.payload  //bütün state cektigimiz için 
+    }
   },
 });
 
 export default cartSlice.reducer;
 
-export const { setTokenValue } = cartSlice.actions;
+export const { setTokenValue, updateFullCart} = cartSlice.actions;

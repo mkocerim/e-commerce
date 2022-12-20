@@ -10,14 +10,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useApi from "./hooks/useApi";
 import { setCategories } from "./redux/categorySlice";
-import { setTokenValue } from "./redux/cartSlice";
+import { setTokenValue, updateFullCart } from "./redux/cartSlice";
 
 
 function App() {
 
   const  api= useApi()
   const dispatch=useDispatch()
-
   const categoryState = useSelector(state=>state.categoryState)
   const authState = useSelector(state=> state.authState)
   const cartState =useSelector(state=> state.cartState)
@@ -44,6 +43,15 @@ function App() {
       console.log('>>CART ERR',err)
     })
 
+  }else if(!cartState.id){
+    api.get(`shop/orders/${cartState.tokenValue}`)
+    .then(response=>{
+
+      dispatch(updateFullCart(response.data))})
+      .catch(err=>{
+        console.log('>>',err)
+      })
+    
   }
 
 //TODO Fill Here
