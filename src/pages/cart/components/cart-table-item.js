@@ -18,10 +18,18 @@ function CartTableItem(props) {
     console.log(">> ON QUANTITY CHANGE", event.target.value);
     
     const patchData={
-      quantity: event.target.value,
+      'quantity': event.target.value,
     }
     
     api.patch(`shop/orders/${cartState.tokenValue}/items/${props.id}`,patchData)
+    .then(response=>{
+
+        console.log()
+    })
+    .catch(err=>{
+
+    })
+
 
   };
 
