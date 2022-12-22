@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 function Breadcrumb(props) {
@@ -15,10 +16,10 @@ function Breadcrumb(props) {
                 {props.items.map((item, index)=>{
                   return(
                     <li key={index}>
-                    <a href={item.href}>
+                    <Link to={item.href}>
                       {item.title}
 
-                    </a>
+                    </Link>
                   </li>
                   )
                 })}

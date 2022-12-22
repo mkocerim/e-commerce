@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import CartTableItem from "./components/cart-table-item";
 
 function Cart(props) {
@@ -16,6 +17,7 @@ function Cart(props) {
       </div>
     </div>;
   }
+  
 
   console.log("CART PROPS", props);
 
@@ -146,9 +148,9 @@ function Cart(props) {
                         </tbody>
                       </table>
                     </div>
-                    <button className="btn btn-primary btn-block">
+                    <Link to="/checkout" className="btn btn-primary btn-block">
                       Proceed To Checkout
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

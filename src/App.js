@@ -5,6 +5,9 @@ import Category from "./pages/category/category";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import Cart from "./pages/cart/cart";
+import Checkout from "./pages/checkout/checkout";
+
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -96,6 +99,8 @@ function App() {
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/register" element={<Register />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+
         </Routes>
       </BrowserRouter>
 
