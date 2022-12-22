@@ -1,13 +1,50 @@
-
+import { useDispatch, useSelector } from "react-redux";
+import useApi from "../../../hooks/useApi";
+import { updateFullCart } from "../../../redux/cartSlice";
 
 function CartTableItem(props) {
 
+  const api= useApi()
+  const dispatch=useDispatch()
+  const cartState= useSelector(state=>state.cartState)
+
   console.log("CART TABLE ITEM PROPS", props);
+  console.log("CART TABLE ITEM CARTSTATE", cartState);
+
+  
 
   const onQuantityChange = (event) => {
+
     console.log(">> ON QUANTITY CHANGE", event.target.value);
+    
+    const patchData={
+      quantity: event.target.value,
+    }
+    
+    api.patch(`shop/orders/${cartState.tokenValue}/items/${props.id}`,patchData)
+
   };
 
+  const onDeleteBtnClick=(event)=>{
+
+    api.delete(`shop/orders/${cartState.tokenValue}/items/${props.id}`)
+    .then(response=>{
+      console.log('CART ITEM DELETE RESP',response)
+    })
+    api.get(`shop/orders/${cartState.tokenValue}`)
+    
+    .then(response=>{
+
+      dispatch(updateFullCart(response.data))})
+      .catch(err=>{
+        console.log('>>',err)
+      })
+
+    .catch(err=>{
+      console.log('CART ITEM DELETE ERR',err)
+
+    })
+  }
   return (
     <tr>
       <td>
@@ -18,7 +55,7 @@ function CartTableItem(props) {
           <a href="#">{props.name}</a>
         </span>
       </td>
-      <td>$1100</td>
+      <td>{props.unitPrice} &nbsp;{cartState.currencyCode}</td>
       <td>
         <div className="product-quantity">
           <div className="quantity">
@@ -38,9 +75,9 @@ function CartTableItem(props) {
           </div>
         </div>
       </td>
-      <td>$1100.00</td>
+      <td>{props.subtotal}  &nbsp;{cartState.currencyCode}</td>
       <th scope="row">
-        <button href="#" className="btn-close">
+        <button href="#" onClick={onDeleteBtnClick} className="btn-close btn-link">
           <i className="fa fa-times-circle-o"></i>
         </button>
       </th>

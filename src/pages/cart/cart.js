@@ -4,7 +4,20 @@ import CartTableItem from "./components/cart-table-item";
 function Cart(props) {
   const cartState = useSelector((state) => state.cartState);
 
-  console.log('CART PROPS',props)
+  if (cartState.id === null) {
+    return;
+    <div className="space-medium">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <strong className="head-title">Loading...</strong>
+          </div>
+        </div>
+      </div>
+    </div>;
+  }
+
+  console.log("CART PROPS", props);
 
   const cartTableItems = [];
 
@@ -15,13 +28,16 @@ function Cart(props) {
         id={item.id}
         name={item.productName}
         quantity={item.quantity}
+        unitPrice={item.unitPrice}
+        total={item.total}
+        subtotal={item.subtotal}
 
         //2. yöntem {...item}
         // 3. yöntem  item= {item}
       />
     );
   });
-  console.log("CART TABLE ITEM PUSH",cartTableItems)
+  console.log("CART TABLE ITEM PUSH", cartTableItems);
 
   return (
     <>
@@ -54,10 +70,7 @@ function Cart(props) {
                             <th></th>
                           </tr>
                         </thead>
-                        <tbody>
-                          {cartTableItems}
-                          
-                        </tbody>
+                        <tbody>{cartTableItems}</tbody>
                       </table>
                     </div>
                   </div>
@@ -79,16 +92,35 @@ function Cart(props) {
                         <tbody>
                           <tr>
                             <th>
-                              <span>Price (2 items)</span>
+                              <span>Price ( {cartState.items.length} items) </span>
                             </th>
-                            <td>$2400</td>
+                            <td>
+
+                                {cartState.items.reduce((currentTotal,item)=> currentTotal + item.subtotal ,0)}
+                                &nbsp; {cartState.currencyCode}
+
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              <span>Tax Total</span>
+                            </th>
+                            <td>
+                              <strong className="text-green">&nbsp; {cartState.taxTotal} &nbsp;{cartState.currencyCode}</strong>
+                            </td>
                           </tr>
                           <tr>
                             <th>
                               <span>Delivery Charges</span>
                             </th>
                             <td>
-                              <strong className="text-green">Free</strong>
+                             {
+                              cartState.shippingTotal == 0 
+                              ?  <strong className="text-green">Free</strong>
+                              : <> &nbsp;   &nbsp;  {cartState.shippingTotal} 
+                              &nbsp; {cartState.currencyCode}
+                              </>
+                             }
                             </td>
                           </tr>
                         </tbody>
@@ -99,11 +131,16 @@ function Cart(props) {
                                 className="mb0"
                                 style={{ fontWeight: "700" }}
                               >
-                                Amount Payable
+                                Amount to  Pay
                               </span>
                             </th>
                             <td style={{ fontWeight: "700", color: "#1c1e1e" }}>
-                              $2400
+                              
+                             {cartState.total + cartState.taxTotal}
+                             &nbsp;
+                             {cartState.currencyCode}
+
+
                             </td>
                           </tr>
                         </tbody>

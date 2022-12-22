@@ -18,9 +18,9 @@ export const cartSlice = createSlice({
 
       state.tokenValue = action.payload.tokenValue;
     },
-    updateFullCart:(state,action)=>{
+    updateFullCart: (state,action)=>{
 
-      console.log(">> SET FULL DATA ACTION", action);
+      console.log(">>UPDATE FULL CART ACTION", action);
 
       return action.payload  //bütün state cektigimiz için 
     }

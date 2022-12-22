@@ -45,6 +45,7 @@ function App() {
 
   }else if(!cartState.id){
     api.get(`shop/orders/${cartState.tokenValue}`)
+    
     .then(response=>{
 
       dispatch(updateFullCart(response.data))})
