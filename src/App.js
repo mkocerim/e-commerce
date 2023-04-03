@@ -7,7 +7,6 @@ import Register from "./pages/register/register";
 import Cart from "./pages/cart/cart";
 import Checkout from "./pages/checkout/checkout";
 
-
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,83 +14,78 @@ import useApi from "./hooks/useApi";
 import { setCategories } from "./redux/categorySlice";
 import { setTokenValue, updateFullCart } from "./redux/cartSlice";
 
-
 function App() {
+  const api = useApi();
+  const dispatch = useDispatch();
+  const categoryState = useSelector((state) => state.categoryState);
+  const authState = useSelector((state) => state.authState);
+  const cartState = useSelector((state) => state.cartState);
 
-  const  api= useApi()
-  const dispatch=useDispatch()
-  const categoryState = useSelector(state=>state.categoryState)
-  const authState = useSelector(state=> state.authState)
-  const cartState =useSelector(state=> state.cartState)
+  console.log(">>APP CATEGORY STATE", categoryState);
+  console.log(">>APP AUTHSTATE STATE", authState);
 
+  if (!cartState.tokenValue) {
+    const postData = { localeCode: "en_US" };
 
+    api
+      .post("shop/orders", postData)
+      .then((response) => {
+        console.log(">>CART RESP", response);
 
-  console.log('>>APP CATEGORY STATE', categoryState)
-  console.log(">>APP AUTHSTATE STATE",authState)
-
-  if(!cartState.tokenValue){ 
-
-    const postData={localeCode: 'en_US'}
-
-    api.post('shop/orders',postData)
-    .then((response)=>{
-      console.log('>>CART RESP',response)
-
-      dispatch(setTokenValue({
-        tokenValue: response.data.tokenValue,
-      }))
-
-          
-    }).catch(err=>{
-      console.log('>>CART ERR',err)
-    })
-
-  }else if(!cartState.id){
-    api.get(`shop/orders/${cartState.tokenValue}`)
-    
-    .then(response=>{
-
-      dispatch(updateFullCart(response.data))})
-      .catch(err=>{
-        console.log('>>',err)
+        dispatch(
+          setTokenValue({
+            tokenValue: response.data.tokenValue,
+          })
+        );
       })
-    
+      .catch((err) => {
+        console.log(">>CART ERR", err);
+      });
+  } else if (!cartState.id) {
+    api
+      .get(`shop/orders/${cartState.tokenValue}`)
+
+      .then((response) => {
+        dispatch(updateFullCart(response.data));
+      })
+      .catch((err) => {
+        console.log(">>", err);
+      });
   }
 
-//TODO Fill Here
+  //TODO Fill Here
   // if(authState.token && authState.customerId && !authState.customerDetails){
   //   api.get('shop/customers/' + authState.customerId)
   //   .then((response)=>{
   //     console.log('CUSTOMER DETAILS RESP',response)
-          
+
   //   }).catch(err=>{
   //     console.log('>>CUSTOMER DETAIL ERR',err)
   //   })
   // }
 
-  if(categoryState.categories=== null) {
+  if (categoryState.categories === null) {
     // TODO kategoriler yüklenmediği için kategorileri API'den al
-    
-    api.get('shop/taxons')
-    .then(response=>{
-      console.log('>> APP CATEGORIES RESP', response)
-      dispatch(setCategories({
-        categories:response.data,
-      }))
-    }).catch(err=>{
-      console.error('>>APP CATEGORIES ERR',err)
-    })
-  
-  
+
+    api
+      .get("shop/taxons")
+      .then((response) => {
+        console.log(">> APP CATEGORIES RESP", response);
+        dispatch(
+          setCategories({
+            categories: response.data,
+          })
+        );
+      })
+      .catch((err) => {
+        console.error(">>APP CATEGORIES ERR", err);
+      });
   }
-
-
 
   return (
     <>
-
       <BrowserRouter>
-      <Header />
+        <Header />
 
         <Routes>
           <Route index element={<Home />} />
@@ -100,7 +94,6 @@ function App() {
           <Route path="/auth/register" element={<Register />} />
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
-
         </Routes>
       </BrowserRouter>
 

@@ -11,13 +11,12 @@ function Cart(props) {
       <div className="container">
         <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <strong className="head-title">Loading...</strong>
+            <strong className="head-title">Loading...</strong>
           </div>
         </div>
       </div>
     </div>;
   }
-  
 
   console.log("CART PROPS", props);
 
@@ -94,13 +93,17 @@ function Cart(props) {
                         <tbody>
                           <tr>
                             <th>
-                              <span>Price ( {cartState.items.length} items) </span>
+                              <span>
+                                Price ( {cartState.items.length} items){" "}
+                              </span>
                             </th>
                             <td>
-
-                                {cartState.items.reduce((currentTotal,item)=> currentTotal + item.subtotal ,0)}
-                                &nbsp; {cartState.currencyCode}
-
+                              {cartState.items.reduce(
+                                (currentTotal, item) =>
+                                  currentTotal + item.subtotal,
+                                0
+                              )}
+                              &nbsp; {cartState.currencyCode}
                             </td>
                           </tr>
                           <tr>
@@ -108,7 +111,10 @@ function Cart(props) {
                               <span>Tax Total</span>
                             </th>
                             <td>
-                              <strong className="text-green">&nbsp; {cartState.taxTotal} &nbsp;{cartState.currencyCode}</strong>
+                              <strong className="text-green">
+                                &nbsp; {cartState.taxTotal} &nbsp;
+                                {cartState.currencyCode}
+                              </strong>
                             </td>
                           </tr>
                           <tr>
@@ -116,13 +122,15 @@ function Cart(props) {
                               <span>Delivery Charges</span>
                             </th>
                             <td>
-                             {
-                              cartState.shippingTotal == 0 
-                              ?  <strong className="text-green">Free</strong>
-                              : <> &nbsp;   &nbsp;  {cartState.shippingTotal} 
-                              &nbsp; {cartState.currencyCode}
-                              </>
-                             }
+                              {cartState.shippingTotal == 0 ? (
+                                <strong className="text-green">Free</strong>
+                              ) : (
+                                <>
+                                  {" "}
+                                  &nbsp; &nbsp; {cartState.shippingTotal}
+                                  &nbsp; {cartState.currencyCode}
+                                </>
+                              )}
                             </td>
                           </tr>
                         </tbody>
@@ -133,16 +141,13 @@ function Cart(props) {
                                 className="mb0"
                                 style={{ fontWeight: "700" }}
                               >
-                                Amount to  Pay
+                                Amount to Pay
                               </span>
                             </th>
                             <td style={{ fontWeight: "700", color: "#1c1e1e" }}>
-                              
-                             {cartState.total + cartState.taxTotal}
-                             &nbsp;
-                             {cartState.currencyCode}
-
-
+                              {cartState.total + cartState.taxTotal}
+                              &nbsp;
+                              {cartState.currencyCode}
                             </td>
                           </tr>
                         </tbody>

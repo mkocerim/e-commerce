@@ -2,44 +2,39 @@ import { useDispatch, useSelector } from "react-redux";
 import useApi from "../../../../hooks/useApi";
 import { updateFullCart } from "../../../../redux/cartSlice";
 
-
-
-
 function ProductItem(props) {
-
-
-
-  const cartState = useSelector(state => state.cartState) 
-  const api= useApi()
-  const dispatch = useDispatch()
+  const cartState = useSelector((state) => state.cartState);
+  const api = useApi();
+  const dispatch = useDispatch();
 
   console.log(">>PRODUCT ITEM", props);
 
-  const onAddToCartButtonClick= (event)=>{
-    event.preventDefault()
-    console.log('>> PRODUCT ITEM DETAILS', props.products)
+  const onAddToCartButtonClick = (event) => {
+    event.preventDefault();
+    console.log(">> PRODUCT ITEM DETAILS", props.products);
 
-    const tokenValue= cartState.tokenValue
+    const tokenValue = cartState.tokenValue;
 
-    const productVariant = props.products.defaultVariant.replace('/api/v2/shop/product-variants/', '')
+    const productVariant = props.products.defaultVariant.replace(
+      "/api/v2/shop/product-variants/",
+      ""
+    );
 
     const postData = {
       productVariant: productVariant,
       quantity: 1,
-    }
+    };
 
-    api.post(`shop/orders/${tokenValue}/items`,postData)
-    .then(response=>{
-      console.log('CART ITEM ADD RESPONSE',response)
-      dispatch(updateFullCart(response.data))
-    })
-    .catch(err=>{
-      console.error('CART ITEM ADD ERROR',err)
-
-    })
-    
-
-  }
+    api
+      .post(`shop/orders/${tokenValue}/items`, postData)
+      .then((response) => {
+        console.log("CART ITEM ADD RESPONSE", response);
+        dispatch(updateFullCart(response.data));
+      })
+      .catch((err) => {
+        console.error("CART ITEM ADD ERROR", err);
+      });
+  };
 
   return (
     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
@@ -68,8 +63,6 @@ function ProductItem(props) {
             <span className="offer-price">40%off</span>
           </div>
           <div className="shopping-btn">
-           
-
             <a
               onClick={onAddToCartButtonClick}
               href="#"

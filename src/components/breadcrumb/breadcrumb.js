@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 
-
 function Breadcrumb(props) {
-  console.log('>>BREADCRUMBS',props)
-
-
+  console.log(">>BREADCRUMBS", props);
 
   return (
     <div className="page-header">
@@ -13,17 +10,13 @@ function Breadcrumb(props) {
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div className="page-breadcrumb">
               <ol className="breadcrumb">
-                {props.items.map((item, index)=>{
-                  return(
+                {props.items.map((item, index) => {
+                  return (
                     <li key={index}>
-                    <Link to={item.href}>
-                      {item.title}
-
-                    </Link>
-                  </li>
-                  )
+                      <Link to={item.href}>{item.title}</Link>
+                    </li>
+                  );
                 })}
-               
               </ol>
             </div>
           </div>

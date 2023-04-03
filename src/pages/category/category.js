@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Breadcrumb from "../../components/breadcrumb/breadcrumb";
 import SideBarSearch from "../../components/side-bar-search/side-bar-search";
@@ -7,12 +7,12 @@ import ProductList from "./components/product-list/product-list";
 
 function Category(props) {
   const params = useParams();
-  const api= useApi()
+  const api = useApi();
 
-  const [products,setProducts]= useState([])
+  const [products, setProducts] = useState([]);
 
-  useEffect(()=>{
-    const urlQueryData = {}
+  useEffect(() => {
+    const urlQueryData = {};
     //  urlQueryData.foo = 'foo'
     //  urlQueryData.bar = 'bar'
     //  urlQueryData.baz = 'baz'
@@ -20,26 +20,23 @@ function Category(props) {
     // //  urlQueryData.productTaxons.taxon.code = 'asc'
     //  urlQueryData['productTaxons.taxon.code'] = 'asc'
 
-    urlQueryData['productTaxons.taxon.code']=params.taxon_code
-    urlQueryData['order[code']=params.taxon_code
-    urlQueryData['order[createdAt]']=params.taxon_code
-    urlQueryData['productTaxons.taxon.code']=params.taxon_code
+    urlQueryData["productTaxons.taxon.code"] = params.taxon_code;
+    urlQueryData["order[code"] = params.taxon_code;
+    urlQueryData["order[createdAt]"] = params.taxon_code;
+    urlQueryData["productTaxons.taxon.code"] = params.taxon_code;
 
+    console.log(">>URLS QUERY DATA", urlQueryData);
 
-    console.log('>>URLS QUERY DATA', urlQueryData)
-
-    api.get('shop/products', { params: urlQueryData })
-    .then(response=>{
-      console.log('>> PRODUCT RESP', response)
-      setProducts(response.data)
-    
-    })
-    .catch(err=>{
-      console.error('>>PRODUCT ERR', err)
-    })
-
-  }, [])
-
+    api
+      .get("shop/products", { params: urlQueryData })
+      .then((response) => {
+        console.log(">> PRODUCT RESP", response);
+        setProducts(response.data);
+      })
+      .catch((err) => {
+        console.error(">>PRODUCT ERR", err);
+      });
+  }, []);
 
   const breadcrumbs = [
     {

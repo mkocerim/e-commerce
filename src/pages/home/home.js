@@ -1,38 +1,37 @@
 import { Carousel } from "react-responsive-carousel";
 
+function Home() {
+  return (
+    <>
+      <div className="container">
+        <Carousel
+          showArrows={true}
+          onChange={() => {
+            console.log(">>ONCHANGE", arguments);
+          }}
+          onClickItem={() => {
+            console.log(">>ONCLICK ITEM", arguments);
+          }}
+          onClickThumb={() => {
+            console.log(">>ONCLICK THUMB", arguments);
+          }}
+        >
+          <div>
+            <img src="images/slider_1.jpg" />
+            <p className="legend">Slider 1</p>
+          </div>
 
-function Home (){
-    return(
-        <>
-         <div className="container">
-          <Carousel
-            showArrows={true}
-            onChange={() => {
-              console.log(">>ONCHANGE", arguments);
-            }}
-            onClickItem={() => {
-              console.log(">>ONCLICK ITEM", arguments);
-            }}
-            onClickThumb={() => {
-              console.log(">>ONCLICK THUMB", arguments);
-            }}
-          >
-            <div>
-              <img src="images/slider_1.jpg" />
-              <p className="legend">Slider 1</p>
-            </div>
+          <div>
+            <img src="images/slider_2.jpg" />
+            <p className="legend">Slider 2</p>
+          </div>
 
-            <div>
-              <img src="images/slider_2.jpg" />
-              <p className="legend">Slider 2</p>
-            </div>
-
-            <div>
-              <img src="images/slider_3.jpg" />
-              <p className="legend">Slider 3</p>
-            </div>
-          </Carousel>
-        </div>
+          <div>
+            <img src="images/slider_3.jpg" />
+            <p className="legend">Slider 3</p>
+          </div>
+        </Carousel>
+      </div>
 
       <div className="space-medium">
         <div className="container">
@@ -347,7 +346,7 @@ function Home (){
           </div>
         </div>
       </div>
-        </>
-    )
+    </>
+  );
 }
-export default Home
+export default Home;

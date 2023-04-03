@@ -4,13 +4,11 @@ import Breadcrumb from "../../components/breadcrumb/breadcrumb";
 import useApi from "../../hooks/useApi";
 import { setToken } from "../../redux/authSlice";
 
-
-
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const api = useApi()
-  const dispatch = useDispatch()
+  const api = useApi();
+  const dispatch = useDispatch();
 
   const breadcrumbs = [
     {
@@ -23,29 +21,31 @@ function Login(props) {
     },
   ];
 
-
   const onFormSubmit = (event) => {
     event.preventDefault();
 
-    const postData = { email, password }    // const postData = {email:email ,password}
+    const postData = { email, password }; // const postData = {email:email ,password}
 
-    api.post("shop/authentication-token", postData)
-      .then(response => {
+    api
+      .post("shop/authentication-token", postData)
+      .then((response) => {
         console.log(">>LOGIN RESPONSE", response);
-       
-        const customerId=response.data.customer.replace("/api/v2/shop/customers/",'')
-       
-        dispatch(setToken({
-          token:response.data.token,
-          customerId
-        }))
 
-       
+        const customerId = response.data.customer.replace(
+          "/api/v2/shop/customers/",
+          ""
+        );
 
+        dispatch(
+          setToken({
+            token: response.data.token,
+            customerId,
+          })
+        );
 
-        document.location.replace('/')
+        document.location.replace("/");
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(">> LOGIN ERR", err);
         alert("An error occured:" + err);
       });
